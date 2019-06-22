@@ -106,8 +106,6 @@
                     </div>
                     <div class="clear-fix"></div>
                 </div>
-
-
                 <!-- Password Row -->
                 <div class="login_row_group">
                     <div class="lrg_control">

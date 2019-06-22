@@ -223,7 +223,10 @@
         <div class="col-sm-2">
             <select  class="form-control" name="" id="select-chk" >
                 <option value="">--Select--</option>
-                <option value="all">All</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="150">150</option>
+                <option value="all">All(200)</option>
                <?php /* <option value="none">None</option>*/?>
             </select>
         </div>
@@ -1283,9 +1286,34 @@ Team Prop Solutions
 
         $('#select-chk').on('change', function(){
             var selectVal   = $(this).val();
-            var allCheckbox = $('#example').find('.assing_chk');
+           
 
             if(selectVal == 'all') {
+                 var allCheckbox = $('#example').find('.assing_chk');
+                allCheckbox.prop('checked', true);
+                allCheckbox.each(function(){
+                    var itm = $(this);
+                    if(itm.is(':checked')){
+                        if($.inArray(itm.val(), AssignArry) == -1)
+                            AssignArry.push(itm.val());
+                        //alert('chill');
+                    }
+                    else
+                        AssignArry.splice($.inArray(itm.val(), AssignArry), 1);
+                    seessionStorage(AssignArry) ; 
+                });
+            }
+            else if(selectVal == '50') {
+                $('.assing_chk').prop('checked', false);
+                sessionStorage.clear();
+                AssignArry = [];
+                 var i=0;
+                var item1=null;
+                for(i=0;i<50;i++)
+                {
+                 var item1 = $( '.assing_chk')[i];
+                  
+                 var allCheckbox = $('#example').find(item1);
                 allCheckbox.prop('checked', true);
                 allCheckbox.each(function(){
                     var itm = $(this);
@@ -1297,6 +1325,55 @@ Team Prop Solutions
                         AssignArry.splice($.inArray(itm.val(), AssignArry), 1);
                     seessionStorage(AssignArry) ; 
                 });
+            }
+            }
+            else if(selectVal == '100') {
+                $('.assing_chk').prop('checked', false);
+                sessionStorage.clear();
+                AssignArry = [];
+                 var i=0;
+                var item1=null;
+                for(i=0;i<100;i++)
+                {
+                 var item1 = $( '.assing_chk')[i];
+                  
+                 var allCheckbox = $('#example').find(item1);
+                allCheckbox.prop('checked', true);
+                allCheckbox.each(function(){
+                    var itm = $(this);
+                    if(itm.is(':checked')){
+                        if($.inArray(itm.val(), AssignArry) == -1)
+                            AssignArry.push(itm.val());
+                    }
+                    else
+                        AssignArry.splice($.inArray(itm.val(), AssignArry), 1);
+                    seessionStorage(AssignArry) ; 
+                });
+            }
+            }
+            else if(selectVal == '150') {
+                $('.assing_chk').prop('checked', false);
+                sessionStorage.clear();
+                AssignArry = [];
+                 var i=0;
+                var item1=null;
+                for(i=0;i<150;i++)
+                {
+                 var item1 = $( '.assing_chk')[i];
+                  
+                 var allCheckbox = $('#example').find(item1);
+                allCheckbox.prop('checked', true);
+                allCheckbox.each(function(){
+                    var itm = $(this);
+                    if(itm.is(':checked')){
+                        if($.inArray(itm.val(), AssignArry) == -1)
+                            AssignArry.push(itm.val());
+                    }
+                    else
+                        AssignArry.splice($.inArray(itm.val(), AssignArry), 1);
+                    seessionStorage(AssignArry) ; 
+                });
+            }
             }
             else {
                 $('.assing_chk').prop('checked', false);
