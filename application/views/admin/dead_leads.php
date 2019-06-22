@@ -193,6 +193,11 @@
                     } ?>
                 </select>
             </div>
+            <div class="col-md-3 form-group">
+                
+            <label for="assign">No Of Leads Per Page:</label>
+            <input type="number" class="form-control" name="per_page" value="" placeholder="Number of Rows Per Page">
+            </div>
             <div class="col-md-3 form-group dead-reason" style="display:<?= ($this->session->userdata("status") == 4) ? 'block' : 'none' ?>;">
                 <label for="assign">Dead Reason:</label>
                 <select  class="form-control"  id="dead_reason" name="dead_reason" >
@@ -220,6 +225,11 @@
         <div class="col-sm-2">
             <a href="javascript:void(0);" class="btn btn-info reassign pull-right" disabled>Reassign</a>
         </div>
+
+        <?php
+        if($this->session->userdata('per_page')=='')
+        {
+        ?>
         <div class="col-sm-2">
             <select  class="form-control" name="" id="select-chk" >
                 <option value="">--Select--</option>
@@ -230,7 +240,26 @@
                <?php /* <option value="none">None</option>*/?>
             </select>
         </div>
-    </div>
+   
+    <?php
+}
+else
+{
+$this->session->unset_userdata("per_page");
+    ?>
+    <div class="col-sm-2">
+            <select  class="form-control" name="" id="select-chk" >
+                <option value="">--Select--</option>
+              
+                <option value="all">All</option>
+               <?php /* <option value="none">None</option>*/?>
+            </select>
+        </div>
+        <?php
+}
+        ?>
+</div>
+</div>
 </div>
 <br>
 <table id="example" class="table table-striped table-bordered dt-responsive" cellspacing="0" width="100%" >
@@ -767,7 +796,8 @@ Team Prop Solutions
                                 }
                                 ?>                                   
                             </select>
-                        </div>  
+                        </div> 
+                           
                     </div>  
                     <div class="errMsg"></div>
                     <div class="clearfix"></div>           

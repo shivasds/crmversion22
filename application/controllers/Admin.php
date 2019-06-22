@@ -720,7 +720,7 @@ class Admin extends CI_Controller {
 			elseif ($this->session->userdata('SRCHDT') == 'tomorrow') 
 				$where .=" AND cb.due_date > '".date('Y-m-d', strtotime('+ 1 day'))."'";
 		}*/
-
+		$per_page=200;
 		if($this->input->post()){
 			$dept=$this->input->post('dept');
 			$project=$this->input->post('project');
@@ -730,6 +730,8 @@ class Admin extends CI_Controller {
 			$status=$this->input->post('status');
 			$city=$this->input->post('city');
 			$dead_reason=$this->input->post('dead_reason');
+			$per_page=$this->input->post('per_page');
+			$this->session->set_userdata("per_page",$per_page);
             
 			if($dept!==null){
 				$this->session->set_userdata("department",$dept);
@@ -832,11 +834,11 @@ class Admin extends CI_Controller {
 		//------- pagination ------
 		$rowCount 				= $this->callback_model->count_search_records(null,$where,$user="admin");
 		$data["totalRecords"] 	= $rowCount;
-		$data["links"] 			= paginitaion(base_url().'admin/dead_leads/', 3,VIEW_PER_PAGE, $rowCount);
+		$data["links"] 			= paginitaion(base_url().'admin/dead_leads/', 3,$per_page, $rowCount);
 		$page = $this->uri->segment(3);
         $offset = !$page ? 0 : $page;
 		//------ End --------------
-		$data['result'] = $this->callback_model->search_callback(null,$where,$offset,VIEW_PER_PAGE);
+		$data['result'] = $this->callback_model->search_callback(null,$where,$offset,$per_page);
 
 		$this->load->view('admin/dead_leads',$data);
 	}
