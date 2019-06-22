@@ -102,7 +102,7 @@
                     <div class="lrg_control">
                         <div class="lrg_addon lrg_icon_user">
                         </div>
-                        <input type="text" name="username" placeholder="Username" class="form-control" required>
+                        <input type="text" name="username" placeholder="Admin" class="form-control" required>
                     </div>
                     <div class="clear-fix"></div>
                 </div>
